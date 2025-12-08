@@ -1,0 +1,30 @@
+# Maintainer: zint <zint@tuta.io>
+# Contributor: zint <zint@tuta.io>
+
+pkgname=linux-modules-loonggpu
+pkgver=1.0.1
+_pkgver=1.0.1-alpha-lnd25.5
+pkgrel=1
+pkgdesc="LOONGGPU binary kernel module"
+license=()
+arch=(loong64)
+makedepends=(
+	gcc14
+	)
+options=(!debug !strip)
+source=("https://pkg.loongnix.cn/loongnix/25/pool/main/l/loonggpu-kernel-dkms/loonggpu-kernel-dkms_${_pkgver}_${arch}.deb")
+b2sums=("5a1895fffc9e23c2952d47e08b191aca49c09bc297d9d5b0c945e3e0363f93e51b7aaa9c71dba5fb3cd919e5a0818f5352f9e0cf671f2a8d4a41b360f482e028")
+
+prepare(){
+	bsdtar -xf "${srcdir}/data."*
+}
+build(){
+	cd "${srcdir}/usr/src/loonggpu-1.0.1"
+	make CC=gcc-14 IGNORE_CC_MISMATCH=1 -j8 modules
+}
+package(){
+	cd "${srcdir}/usr/src/loonggpu-1.0.1"
+	ZSTD_CLEVEL=19 make INSTALL_MOD_PATH="${srcdir}/usr" modules_install
+	install -Dm644 "${srcdir}/usr/lib/modules/$(uname -r)/kernel/drivers/gpu/drm/gsgpu/gpu/loonggpu.ko.zst" "${pkgdir}/usr/lib/modules/$(uname -r)/extra/loonggpu.ko.zst"
+	install -Dm644 ${srcdir}/usr/share/doc/loonggpu-kernel-dkms/copyright ${pkgdir}/usr/share/doc/linux-modules-loonggpu/copyright
+}
