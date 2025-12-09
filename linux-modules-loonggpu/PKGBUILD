@@ -4,7 +4,7 @@
 pkgname=linux-modules-loonggpu
 pkgver=1.0.1
 _pkgver=1.0.1-alpha-lnd25.5
-pkgrel=2
+pkgrel=3
 pkgdesc="LOONGGPU binary kernel module"
 license=()
 arch=(loong64)
@@ -24,11 +24,10 @@ build(){
 }
 package(){
 	cd "${srcdir}/usr/src/loonggpu-1.0.1"
-	ZSTD_CLEVEL=19 make INSTALL_MOD_PATH="${srcdir}/usr" INSTALL_MOD_STRIP=1 DEPMOD=/doesnt/exist modules_install
-	install -Dm644 "${srcdir}/usr/lib/modules/$(uname -r)/kernel/drivers/gpu/drm/gsgpu/gpu/loonggpu.ko.zst" "${pkgdir}/usr/lib/modules/$(uname -r)/extra/loonggpu.ko.zst"
+	ZSTD_CLEVEL=19 make INSTALL_MOD_PATH="${pkgdir}/usr" INSTALL_MOD_STRIP=1 DEPMOD=/doesnt/exist modules_install
 	install -Dm644 ${srcdir}/usr/share/doc/loonggpu-kernel-dkms/copyright ${pkgdir}/usr/share/doc/linux-modules-loonggpu/copyright
 }
 post_install()
 {
-	echo -e "Do not forget run `depmod -a`"
+	message "Do not forget run `depmod -a`"
 }
