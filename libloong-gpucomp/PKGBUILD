@@ -23,9 +23,6 @@ b2sums=(
 prepare(){
 	bsdtar -xf "${srcdir}/data."*
 }
-build(){
-	cd ${srcdir}
-}
 package(){
 	install -Dm755 "${srcdir}/usr/lib/loongarch64-linux-gnu/libloong-gpucomp.so.1" "${pkgdir}/usr/lib/libloong-gpucomp.so.1"
 

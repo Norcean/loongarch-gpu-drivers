@@ -23,9 +23,6 @@ b2sums=(
 prepare(){
 	bsdtar -xf "${srcdir}/data."*
 }
-build(){
-	cd ${srcdir}
-}
 package(){
 	install -Dm755 "${srcdir}/usr/lib/loongarch64-linux-gnu/libldrm.so.1.0.0" "${pkgdir}/usr/lib/libldrm.so.1.0.0"
 
