@@ -4,12 +4,15 @@
 pkgname=linux-modules-loonggpu
 pkgver=1.0.1
 _pkgver=1.0.1-alpha-lnd25.5
-pkgrel=3
+pkgrel=4
 pkgdesc="LOONGGPU binary kernel module"
 license=()
 arch=(loong64)
 makedepends=(
 	gcc14
+	)
+depends=(
+	linux-firmware-loongson
 	)
 options=(!debug !strip)
 source=("https://pkg.loongnix.cn/loongnix/25/pool/main/l/loonggpu-kernel-dkms/loonggpu-kernel-dkms_${_pkgver}_${arch}.deb")
