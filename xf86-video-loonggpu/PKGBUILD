@@ -17,6 +17,8 @@ arch=(loong64)
 makedepends=(
 	binutils
 	libarchive
+	)
+depenfs=(
 	libldrm
 	)
 options=(!debug !strip)
