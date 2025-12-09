@@ -1,0 +1,6 @@
+https://pkg.loongnix.cn/loongnix/25/pool/main/l/loonggl/loonggl_1.0.1-alpha-lnd25.5_loong64.deb
+https://pkg.loongnix.cn/loongnix/25/pool/main/f/firmware-loongson-graphics/firmware-loongson-graphics_1.0.1-alpha-lnd25.5_loong64.deb
+https://pkg.loongnix.cn/loongnix/25/pool/main/l/ldrm/libldrm_1.0.1-alpha-lnd25.5_loong64.deb
+https://pkg.loongnix.cn/loongnix/25/pool/main/l/loong-gpucomp/libloong-gpucomp_1.0.1-alpha-lnd25.5_loong64.deb
+https://pkg.loongnix.cn/loongnix/25/pool/main/l/loonggpu-driver/loonggpu-driver_1.0.1-alpha-lnd25.5_loong64.deb
+https://pkg.loongnix.cn/loongnix/25/pool/main/l/loonggpu-kernel-dkms/loonggpu-kernel-dkms_1.0.1-alpha-lnd25.5_loong64.deb
