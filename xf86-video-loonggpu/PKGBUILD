@@ -7,7 +7,7 @@ _pkgver=1.0.1-alpha-lnd25.5
 pkgrel=1
 pkgdesc="LOONGGPU binary Xorg driver
  loonggpu is an Xorg video driver for the kernel driver which name is the
- value of "MatchDriver" in 20-loonggpu.conf. Note that 3D acceleration is
+ value of \"MatchDriver\" in 20-loonggpu.conf. Note that 3D acceleration is
  available through enable the EXA layer. If the fake EXA accerelation is
  not enabled, then this driver will fallback to shadowfb. This driver
  supports TrueColor visuals at framebuffer depths of 15, 16, 24, and 30.
