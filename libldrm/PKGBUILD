@@ -9,7 +9,8 @@ pkgdesc="LOONGGPU ldrm library"
 license=()
 arch=(loong64)
 makedepends=(
-	zstd
+	binutils
+	libarchive
 	)
 options=(!debug !strip)
 source=(

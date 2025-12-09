@@ -1,0 +1,33 @@
+# Maintainer: zint <zint@tuta.io>
+# Contributor: zint <zint@tuta.io>
+
+pkgname=libloong-gpucomp
+pkgver=1.0.1
+_pkgver=1.0.1-alpha-lnd25.5
+pkgrel=1
+pkgdesc="LOONGGPU GPUCOMP runtime library"
+license=()
+arch=(loong64)
+makedepends=(
+	binutils
+	libarchive
+	)
+options=(!debug !strip)
+source=(
+	"https://pkg.loongnix.cn/loongnix/25/pool/main/l/loong-gpucomp/libloong-gpucomp_${_pkgver}_${arch}.deb"
+)
+b2sums=(
+	"3c4e36f11a69b3a044e593632c5c186a8d4b11b51c748720c226dc2ea2a7b825673aeaeb8a0dbb43bb0d45470432ded795de6802de8c20f6a1de6cd382a48e25"
+)
+
+prepare(){
+	bsdtar -xf "${srcdir}/data."*
+}
+build(){
+	cd ${srcdir}
+}
+package(){
+	install -Dm755 "${srcdir}/usr/lib/loongarch64-linux-gnu/libloong-gpucomp.so.1" "${pkgdir}/usr/lib/libloong-gpucomp.so.1"
+
+	install -Dm644 ${srcdir}/usr/share/doc/libloong-gpucomp/copyright ${pkgdir}/usr/share/doc/libloong-gpucomp/copyright
+}
