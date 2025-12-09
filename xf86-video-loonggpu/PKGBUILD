@@ -1,0 +1,39 @@
+# Maintainer: zint <zint@tuta.io>
+# Contributor: zint <zint@tuta.io>
+
+pkgname=xf86-video-loonggpu
+pkgver=1.0.1
+_pkgver=1.0.1-alpha-lnd25.5
+pkgrel=1
+pkgdesc="LOONGGPU binary Xorg driver
+ loonggpu is an Xorg video driver for the kernel driver which name is the
+ value of "MatchDriver" in 20-loonggpu.conf. Note that 3D acceleration is
+ available through enable the EXA layer. If the fake EXA accerelation is
+ not enabled, then this driver will fallback to shadowfb. This driver
+ supports TrueColor visuals at framebuffer depths of 15, 16, 24, and 30.
+ This package is build from the X.org xf86-video-loonggpu driver module."
+license=()
+arch=(loong64)
+makedepends=(
+	binutils
+	libarchive
+	libldrm
+	)
+options=(!debug !strip)
+source=(
+	"https://pkg.loongnix.cn/loongnix/25/pool/main/x/xserver-xorg-video-loonggpu/xserver-xorg-video-loonggpu_${_pkgver}_${arch}.deb"
+)
+b2sums=(
+	"94ff5960dc16ec5f84559d98f39b716d05ed6e7f7a15137a5bd5cf80aecae4f08f38b0b06773fe8b3f10c65e3f069c50f086d61f9315e8e12faaafa6d9d071dc"
+)
+
+prepare(){
+	bsdtar -xf "${srcdir}/data."*
+}
+package(){
+	mkdir -p "${pkgdir}/usr"
+
+	install -Dm755 "${srcdir}/usr/lib/xorg/modules/drivers/loonggpu_drv.so" "${pkgdir}/usr/lib/xorg/modules/drivers/loonggpu_drv.so"
+
+	cp -r "${srcdir}/usr/share" "${pkgdir}/usr/"
+}
