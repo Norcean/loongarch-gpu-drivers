@@ -1,0 +1,38 @@
+# Maintainer: zint <zint@tuta.io>
+# Contributor: zint <zint@tuta.io>
+
+pkgname=libldrm
+pkgver=1.0.1
+_pkgver=1.0.1-alpha-lnd25.5
+pkgrel=1
+pkgdesc="LOONGGPU ldrm library"
+license=()
+arch=(loong64)
+makedepends=(
+	zstd
+	)
+options=(!debug !strip)
+source=(
+	"https://pkg.loongnix.cn/loongnix/25/pool/main/l/ldrm/libldrm_${_pkgver}_${arch}.deb"
+)
+b2sums=(
+	"de1bc2c516f2ae01b4478be8cad56519a03ed9d7ffcb7af1b05dcd28ee01c2859ae2b7f77e0cb2453ca43d48677fad556cb290d546d9d840af253563578cee64"
+)
+
+prepare(){
+	bsdtar -xf "${srcdir}/data."*
+}
+build(){
+	cd ${srcdir}
+}
+package(){
+	install -Dm755 "${srcdir}/usr/lib/loongarch64-linux-gnu/libldrm.so.1.0.0" "${pkgdir}/usr/lib/libldrm.so.1.0.0"
+
+	pushd "${pkgdir}/usr/lib"
+	ln -s libldrm.so.1.0.0 libldrm.so.1
+	popd
+
+	install -Dm644 ${srcdir}/usr/share/libldrm/gsgpu.ids ${pkgdir}/usr/share/libldrm/gsgpu.ids
+
+	install -Dm644 ${srcdir}/usr/share/doc/libldrm/copyright ${pkgdir}/usr/share/doc/libldrm/copyright
+}
