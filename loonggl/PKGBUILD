@@ -5,12 +5,22 @@ pkgname=loonggl
 pkgver=1.0.1
 _pkgver=1.0.1-alpha-lnd25.5
 pkgrel=1
-pkgdesc="LOONGGPU GPUCOMP runtime library"
+pkgdesc="LOONGGPU binary OpenGL|ES|EGL|GLX library
+ This package contains the development environment required for compiling
+ programs against EGL native platform graphics interface library.
+ EGL provides a platform-agnostic mechanism for creating rendering surfaces
+ for use with other graphics libraries, such as OpenGL|ES|EGL|GLX."
 license=()
 arch=(loong64)
 makedepends=(
 	binutils
 	libarchive
+)
+depends=(
+	linux-firmware-loongson
+	libldrm
+	libloong-gpucomp
+	libglvnd
 	)
 options=(!debug !strip)
 source=(
