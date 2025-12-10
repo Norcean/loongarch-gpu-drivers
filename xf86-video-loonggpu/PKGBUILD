@@ -39,8 +39,12 @@ package(){
 
 	install -Dm755 "${srcdir}/usr/lib/xorg/modules/drivers/loonggpu_drv.so" "${pkgdir}/usr/lib/xorg/modules/drivers/loonggpu_drv.so"
 
-	pushd "${pkgdir}/usr/lib/xorg/modules"
+	pushd "${pkgdir}/usr/lib"
 	ln -s ../../dri/gsgpu_dri.so
+	popd
+
+	pushd "${pkgdir}/usr/lib/xorg/modules"
+	ln -s libedit.so libedit.so.2
 	popd
 
 	cp -r "${srcdir}/usr/share" "${pkgdir}/usr/"
