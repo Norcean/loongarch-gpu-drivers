@@ -4,7 +4,7 @@
 pkgname=xf86-video-loonggpu
 pkgver=1.0.1
 _pkgver=1.0.1-alpha-lnd25.5
-pkgrel=2
+pkgrel=3
 pkgdesc="LOONGGPU binary Xorg driver
  loonggpu is an Xorg video driver for the kernel driver which name is the
  value of \"MatchDriver\" in 20-loonggpu.conf. Note that 3D acceleration is
@@ -40,11 +40,11 @@ package(){
 	install -Dm755 "${srcdir}/usr/lib/xorg/modules/drivers/loonggpu_drv.so" "${pkgdir}/usr/lib/xorg/modules/drivers/loonggpu_drv.so"
 
 	pushd "${pkgdir}/usr/lib"
-	ln -s ../../dri/gsgpu_dri.so
+	ln -s libedit.so libedit.so.2
 	popd
 
 	pushd "${pkgdir}/usr/lib/xorg/modules"
-	ln -s libedit.so libedit.so.2
+	ln -s ../../dri/gsgpu_dri.so
 	popd
 
 	cp -r "${srcdir}/usr/share" "${pkgdir}/usr/"
