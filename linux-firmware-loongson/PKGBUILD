@@ -4,7 +4,7 @@
 pkgname=linux-firmware-loongson
 pkgver=1.0.1
 _pkgver=1.0.1-alpha-lnd25.5
-pkgrel=1
+pkgrel=2
 pkgdesc="This package contains the binary firmware for loongson graphics chips supported by the gsgpu drivers."
 license=()
 arch=(loong64)
@@ -18,12 +18,8 @@ b2sums=("b6661ee351c205c6f4eb81538fa9eec933f73f785367c2b35e333727cae7f2055aada0c
 prepare(){
 	bsdtar -xf "${srcdir}/data."*
 }
-build(){
-	cd ${srcdir}
-	zstd -19 lib/firmware/loonggpu/lg100_cp.bin -o lib/firmware/loonggpu/lg100_cp.bin.zst
-}
 package(){
-	install -Dm644 ${srcdir}/lib/firmware/loonggpu/lg100_cp.bin.zst ${pkgdir}/usr/lib/firmware/loonggpu/lg100_cp.bin.zst
+	install -Dm644 ${srcdir}/lib/firmware/loonggpu/lg100_cp.bin ${pkgdir}/usr/lib/firmware/loonggpu/lg100_cp.bin
 
 	install -Dm644 ${srcdir}/usr/share/doc/firmware-loongson-graphics/copyright ${pkgdir}/usr/share/doc/firmware-loongson-graphics/copyright
 	install -Dm644 ${srcdir}/usr/share/metainfo/firmware-loongson-graphics.metainfo.xml ${pkgdir}/usr/share/metainfo/firmware-loongson-graphics.metainfo.xml
