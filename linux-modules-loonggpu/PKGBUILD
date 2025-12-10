@@ -4,7 +4,7 @@
 pkgname=linux-modules-loonggpu
 pkgver=1.0.1
 _pkgver=1.0.1-alpha-lnd25.5
-pkgrel=4
+pkgrel=5
 pkgdesc="LOONGGPU binary kernel module"
 license=()
 arch=(loong64)
@@ -23,7 +23,7 @@ prepare(){
 }
 build(){
 	cd "${srcdir}/usr/src/loonggpu-1.0.1"
-	make CC=gcc-14 IGNORE_CC_MISMATCH=1 -j8 modules
+	make CC=gcc-14 IGNORE_CC_MISMATCH=1 LG_VERBOSE=1 -j${nproc} modules
 }
 package(){
 	cd "${srcdir}/usr/src/loonggpu-1.0.1"
