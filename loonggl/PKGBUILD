@@ -4,7 +4,7 @@
 pkgname=loonggl
 pkgver=1.0.1
 _pkgver=1.0.1-alpha-lnd25.5
-pkgrel=1
+pkgrel=2
 pkgdesc="LOONGGPU binary OpenGL|ES|EGL|GLX library
  This package contains the development environment required for compiling
  programs against EGL native platform graphics interface library.
@@ -36,7 +36,6 @@ prepare(){
 package(){
 
 	cp -r "${srcdir}/etc" "${pkgdir}/etc"
-	rm -r "${pkgdir}/etc/init.d"
 
 	mkdir -p "${pkgdir}/usr/"
 	cp -r "${srcdir}/usr/lib/loongarch64-linux-gnu/" "${pkgdir}/usr/lib/"
