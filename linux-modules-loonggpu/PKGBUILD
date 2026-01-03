@@ -2,8 +2,8 @@
 # Contributor: zint <zint@tuta.io>
 
 pkgname=linux-modules-loonggpu
-pkgver=1.0.1
-_pkgver=1.0.1-alpha-lnd25.5
+pkgver=1.0.2
+_pkgver=${pkgver}-lnd25.1~rc1.7
 pkgrel=5
 pkgdesc="LOONGGPU binary kernel module"
 license=()
@@ -15,22 +15,22 @@ depends=(
 	linux-firmware-loongson
 	)
 options=(!debug !strip)
-source=("https://pkg.loongnix.cn/loongnix/25/pool/main/l/loonggpu-kernel-dkms/loonggpu-kernel-dkms_${_pkgver}_${arch}.deb")
-b2sums=("5a1895fffc9e23c2952d47e08b191aca49c09bc297d9d5b0c945e3e0363f93e51b7aaa9c71dba5fb3cd919e5a0818f5352f9e0cf671f2a8d4a41b360f482e028")
+source=("https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers//loonggpu-kernel-dkms_${_pkgver}_${arch}.deb")
+b2sums=('324594ba2d39f306c63a07f61691c031963fe77e9cbb1c4d9c9bdf54effc11af4bdf043b1624bd3ab1c18299eaafb80f55d51fae239b2485fe242e28e7eb9853')
+install="loonggpu.install"
 
 prepare(){
 	bsdtar -xf "${srcdir}/data."*
 }
 build(){
-	cd "${srcdir}/usr/src/loonggpu-1.0.1"
+	cd "${srcdir}/usr/src/loonggpu-${pkgver}"
 	make CC=gcc-14 IGNORE_CC_MISMATCH=1 LG_VERBOSE=1 -j${nproc} modules
 }
 package(){
-	cd "${srcdir}/usr/src/loonggpu-1.0.1"
+	cd "${srcdir}/usr/src/loonggpu-${pkgver}"
+
 	ZSTD_CLEVEL=19 make INSTALL_MOD_PATH="${pkgdir}/usr" INSTALL_MOD_STRIP=1 DEPMOD=/doesnt/exist modules_install
+
+	install -Dm644 ${srcdir}/etc/udev/rules.d/70-loonggpu.rules ${pkgdir}/etc/udev/rules.d/70-loonggpu.rules
 	install -Dm644 ${srcdir}/usr/share/doc/loonggpu-kernel-dkms/copyright ${pkgdir}/usr/share/doc/linux-modules-loonggpu/copyright
-}
-post_install()
-{
-	message "Do not forget run `depmod -a`"
 }
