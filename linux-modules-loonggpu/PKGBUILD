@@ -2,10 +2,9 @@
 # Contributor: zint <zint@tuta.io>
 
 pkgname=linux-modules-loonggpu
-pkgver=1.0.2
-_pkgver=${pkgver}-lnd25.1~rc1.7
-pkgrel=5
-pkgdesc="LOONGGPU binary kernel module"
+pkgver=1.0.2.lnd25.1.rc1.7.r63.g2576e56
+pkgrel=1
+pkgdesc="LOONGGPU binary kernel module with AOSC patch"
 license=()
 arch=(loong64)
 makedepends=(
@@ -15,22 +14,28 @@ depends=(
 	linux-firmware-loongson
 	)
 options=(!debug !strip)
-source=("https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers//loonggpu-kernel-dkms_${_pkgver}_${arch}.deb")
-b2sums=('324594ba2d39f306c63a07f61691c031963fe77e9cbb1c4d9c9bdf54effc11af4bdf043b1624bd3ab1c18299eaafb80f55d51fae239b2485fe242e28e7eb9853')
+source=(
+	"$pkgname::git+https://github.com/AOSC-Tracking/loonggpu-kernel-dkms.git#branch=aosc/v1.0.2-lnd25.1-rc1.7"
+)
+b2sums=('SKIP')
 install="loonggpu.install"
 
-prepare(){
-	bsdtar -xf "${srcdir}/data."*
+pkgver() {
+	cd "${srcdir}/${pkgname}"
+	git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
+
 build(){
-	cd "${srcdir}/usr/src/loonggpu-${pkgver}"
+	cd "${srcdir}/${pkgname}"
 	make CC=gcc-14 IGNORE_CC_MISMATCH=1 LG_VERBOSE=1 -j${nproc} modules
 }
 package(){
-	cd "${srcdir}/usr/src/loonggpu-${pkgver}"
+	cd "${srcdir}/${pkgname}"
 
 	ZSTD_CLEVEL=19 make INSTALL_MOD_PATH="${pkgdir}/usr" INSTALL_MOD_STRIP=1 DEPMOD=/doesnt/exist modules_install
 
-	install -Dm644 ${srcdir}/etc/udev/rules.d/70-loonggpu.rules ${pkgdir}/etc/udev/rules.d/70-loonggpu.rules
-	install -Dm644 ${srcdir}/usr/share/doc/loonggpu-kernel-dkms/copyright ${pkgdir}/usr/share/doc/linux-modules-loonggpu/copyright
+	install -d -m755 "${pkgdir}/etc/udev/rules.d"
+	printf 'KERNEL=="kcd", GROUP="video", MODE="0660"\n' > \
+		"${pkgdir}/etc/udev/rules.d/70-loonggpu.rules"
+	chmod 644 "${pkgdir}/etc/udev/rules.d/70-loonggpu.rules"
 }
