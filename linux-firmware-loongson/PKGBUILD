@@ -2,8 +2,8 @@
 # Contributor: zint <zint@tuta.io>
 
 pkgname=linux-firmware-loongson
-pkgver=1.0.1
-_pkgver=1.0.1-alpha-lnd25.5
+pkgver=1.0.2
+_pkgver=${pkgver}-lnd25.1~rc1.7
 pkgrel=2
 pkgdesc="This package contains the binary firmware for loongson graphics chips supported by the gsgpu drivers."
 license=()
@@ -12,8 +12,8 @@ makedepends=(
 	zstd
 	)
 options=(!debug !strip)
-source=("https://pkg.loongnix.cn/loongnix/25/pool/main/f/firmware-loongson-graphics/firmware-loongson-graphics_${_pkgver}_${arch}.deb")
-b2sums=("b6661ee351c205c6f4eb81538fa9eec933f73f785367c2b35e333727cae7f2055aada0cc7e80ae9381979a7c6907ef9b5f6babee945941e64e31dc3497fddf15")
+source=("https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/firmware-loongson-graphics_${_pkgver}_${arch}.deb")
+b2sums=("c10ca294c99218b9763f7961f41034e03c092dc57caefe159599b8808e718aae5b2e00680e890bf806a8cb459077edfd0d8ea42c328ef0b6b850dcbdcf978f26")
 
 prepare(){
 	bsdtar -xf "${srcdir}/data."*
@@ -22,5 +22,4 @@ package(){
 	install -Dm644 ${srcdir}/lib/firmware/loonggpu/lg100_cp.bin ${pkgdir}/usr/lib/firmware/loonggpu/lg100_cp.bin
 
 	install -Dm644 ${srcdir}/usr/share/doc/firmware-loongson-graphics/copyright ${pkgdir}/usr/share/doc/firmware-loongson-graphics/copyright
-	install -Dm644 ${srcdir}/usr/share/metainfo/firmware-loongson-graphics.metainfo.xml ${pkgdir}/usr/share/metainfo/firmware-loongson-graphics.metainfo.xml
 }
