@@ -2,8 +2,8 @@
 # Contributor: zint <zint@tuta.io>
 
 pkgname=xf86-video-loonggpu
-pkgver=1.0.1
-_pkgver=1.0.1-alpha-lnd25.5
+pkgver=1.0.2
+_pkgver=${pkgver}-lnd25.1~rc1.7
 pkgrel=3
 pkgdesc="LOONGGPU binary Xorg driver
  loonggpu is an Xorg video driver for the kernel driver which name is the
@@ -25,18 +25,20 @@ depends=(
 	)
 options=(!debug !strip)
 source=(
-	"https://pkg.loongnix.cn/loongnix/25/pool/main/x/xserver-xorg-video-loonggpu/xserver-xorg-video-loonggpu_${_pkgver}_${arch}.deb"
+	"https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/xserver-xorg-video-loonggpu_${_pkgver}_${arch}.deb"
+	"loonggpu_driver.conf"
 )
-b2sums=(
-	"94ff5960dc16ec5f84559d98f39b716d05ed6e7f7a15137a5bd5cf80aecae4f08f38b0b06773fe8b3f10c65e3f069c50f086d61f9315e8e12faaafa6d9d071dc"
-)
+b2sums=('ce459b8834752ab6cb4783da58b36df68198d6ebfa9ef60caf850321f63901e62cd235b7f3f78925ea1b6f90099561b4ae872e7bb01b55adabb66dd906eff157'
+        '4187dac562b863d7675e1c79d9b887cbe1935e287e670a6c6e901752861e8e62e47463abe64e75b7da3421ed71f73ad3eff06bb63f5c04a7e3865e4e564ff9d3')
 
 prepare(){
 	bsdtar -xf "${srcdir}/data."*
 }
 package(){
 	mkdir -p "${pkgdir}/usr"
+	mkdir -p "${pkgdir}/etc/loonggpu"
 
+	install -Dm644 "${srcdir}/loonggpu_driver.conf" "${pkgdir}/etc/loonggpu/loonggpu_driver.conf"
 	install -Dm755 "${srcdir}/usr/lib/xorg/modules/drivers/loonggpu_drv.so" "${pkgdir}/usr/lib/xorg/modules/drivers/loonggpu_drv.so"
 
 	pushd "${pkgdir}/usr/lib"
