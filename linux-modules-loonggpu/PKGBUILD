@@ -2,13 +2,13 @@
 # Contributor: zint <zint@tuta.io>
 
 pkgname=linux-modules-loonggpu
-pkgver=1.0.2.lnd25.1.rc1.7.r63.g2576e56
+pkgver=1.0.2.lnd25.1.rc1.7.r63.g75eb3ff
 pkgrel=1
 pkgdesc="LOONGGPU binary kernel module with AOSC patch"
 license=()
 arch=(loong64)
 makedepends=(
-	gcc14
+	gcc
 	)
 depends=(
 	linux-firmware-loongson
@@ -27,7 +27,7 @@ pkgver() {
 
 build(){
 	cd "${srcdir}/${pkgname}"
-	make CC=gcc-14 IGNORE_CC_MISMATCH=1 LG_VERBOSE=1 -j${nproc} modules
+	make IGNORE_CC_MISMATCH=1 LG_VERBOSE=1 -j${nproc} modules
 }
 package(){
 	cd "${srcdir}/${pkgname}"
