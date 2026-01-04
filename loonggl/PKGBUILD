@@ -4,7 +4,7 @@
 pkgname=loonggl
 pkgver=1.0.2
 _pkgver=${pkgver}-lnd25.1~rc1.7
-pkgrel=3
+pkgrel=2
 pkgdesc="LOONGGPU binary OpenGL|ES|EGL|GLX library
  This package contains the development environment required for compiling
  programs against EGL native platform graphics interface library.
@@ -37,7 +37,8 @@ package(){
 	cp -r "${srcdir}/usr/lib/loongarch64-linux-gnu/" "${pkgdir}/usr/lib/"
 
 	pushd "${pkgdir}/usr/lib"
-	ln -s loonggpu/libglapidispatch.so.0
+	ln -s gsgpu/libgsgpu_glapi.so.0.0.0 libgsgpu_glapi.so.0
+	ln -s loonggpu/libloonggpu_glapi.so.0.0.0 libloonggpu_glapi.so.0
 	popd
 
 	install -Dm644 "${srcdir}/usr/share/glvnd/egl_vendor.d/40_gsgpu.json" "${pkgdir}/usr/share/glvnd/egl_vendor.d/40_gsgpu.json"
