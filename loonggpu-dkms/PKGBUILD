@@ -1,24 +1,24 @@
 # Maintainer: zint <zint@tuta.io>
 # Contributor: zint <zint@tuta.io>
 
-pkgname=linux-modules-loonggpu
-pkgver=1.0.2.lnd25.1.rc1.7.r63.g75eb3ff
-pkgrel=1
+pkgname=loonggpu-dkms
+pkgver=1.0.2.lnd25.1.rc1.7.r63.g99f2fbb
+pkgrel=2
 pkgdesc="LOONGGPU binary kernel module with AOSC patch"
 license=()
 arch=(loong64)
 makedepends=(
-	gcc
+	git
 	)
 depends=(
 	linux-firmware-loongson
+	dkms
 	)
 options=(!debug !strip)
 source=(
 	"$pkgname::git+https://github.com/AOSC-Tracking/loonggpu-kernel-dkms.git#branch=aosc/v1.0.2-lnd25.1-rc1.7"
 )
 b2sums=('SKIP')
-install="loonggpu.install"
 
 pkgver() {
 	cd "${srcdir}/${pkgname}"
@@ -27,15 +27,27 @@ pkgver() {
 
 build(){
 	cd "${srcdir}/${pkgname}"
-	make IGNORE_CC_MISMATCH=1 LG_VERBOSE=1 -j${nproc} modules
+	sed -i "s/PACKAGE_VERSION=.*/PACKAGE_VERSION=\"${pkgver}\"/" dkms.conf
 }
 package(){
 	cd "${srcdir}/${pkgname}"
 
-	ZSTD_CLEVEL=19 make INSTALL_MOD_PATH="${pkgdir}/usr" INSTALL_MOD_STRIP=1 DEPMOD=/doesnt/exist modules_install
+	local dkms_dir="${pkgdir}/usr/src/${pkgname}-${pkgver}"
+	install -dm755 "${dkms_dir}"
+
+	for item in common include lgkcd loonggpu loonggpu-bridge Makefile Kbuild loonggpu.c conftest.sh dkms.conf; do
+		if [ -e "$item" ]; then
+			cp -dr --no-preserve='ownership' "$item" "${dkms_dir}/"
+		fi
+	done
 
 	install -d -m755 "${pkgdir}/etc/udev/rules.d"
 	printf 'KERNEL=="kcd", GROUP="video", MODE="0660"\n' > \
 		"${pkgdir}/etc/udev/rules.d/70-loonggpu.rules"
 	chmod 644 "${pkgdir}/etc/udev/rules.d/70-loonggpu.rules"
+
+	# https://www.kdocs.cn/l/cvq9DSawFxLS
+	install -Dm644 /dev/null "${pkgdir}/usr/lib/modprobe.d/loongson.conf"
+	printf 'softdep loongson pre: loonggpu\n' > "${pkgdir}/usr/lib/modprobe.d/loongson.conf"
+
 }

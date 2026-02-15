@@ -1,3 +1,0 @@
-#!/bin/bash
-
-msg2install "Do not forget run `depmod -a`"
