@@ -3,7 +3,7 @@
 
 pkgname=loonggl
 pkgver=1.0.2
-_pkgver=${pkgver}-lnd25.1~rc1.7
+_pkgver=${pkgver}-0kylin1
 pkgrel=2
 pkgdesc="LOONGGPU binary OpenGL|ES|EGL|GLX library
  This package contains the development environment required for compiling
@@ -24,9 +24,9 @@ depends=(
 	)
 options=(!debug !strip)
 source=(
-	"https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/loonggl_${_pkgver}_${arch}.deb"
+	"https://repos.loongson.cn/loonggpu/repos/kylinv10sp1/loonggl_${_pkgver}_loongarch64.deb"
 )
-b2sums=('e87ff62fd7b6c8b704c05c1d8adfb5cec5e5027e341f8450123687c49c43333cbb44280c4426a237d8c3fe0f423ba694349be8dea96b4eccf3699aa1e8f20152')
+b2sums=('5aed12273206f3e51b7516bfefb555a8e28852ac3476be64d295930c04f76a260e098b01d9dde339bfc7e98eae7cf5f38aa8dd9ddeb80c03390e53f1db2c4b56')
 
 prepare(){
 	bsdtar -xf "${srcdir}/data."*

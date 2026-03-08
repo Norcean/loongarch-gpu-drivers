@@ -3,7 +3,7 @@
 
 pkgname=libldrm
 pkgver=1.0.2
-_pkgver=${pkgver}-lnd25.1~rc1.7
+_pkgver=${pkgver}-0kylin1
 pkgrel=1
 pkgdesc="LOONGGPU ldrm library"
 license=()
@@ -14,11 +14,11 @@ makedepends=(
 	)
 options=(!debug !strip)
 source=(
-	"https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/libldrm_${_pkgver}_${arch}.deb"
+	"https://repos.loongson.cn/loonggpu/repos/kylinv10sp1/libldrm_${_pkgver}_loongarch64.deb"
 )
 b2sums=(
-	"598275110c298a5744cd184b10e84d37b30692c8372a2696c33e24f4cac16ccfda84b6bc99944a867b6d91599559874916208bb501d57a530a8461c36a89f1a3"
-)
+	"3e21b571d84d74ca1e50f53ed4a994be93da11f12f16294f2f13b7ed919dcf50376f372fe85d912d36c4257aa4686cd7dcd95b38a1f1dcefe74914a86464f757"
+	)
 
 prepare(){
 	bsdtar -xf "${srcdir}/data."*
