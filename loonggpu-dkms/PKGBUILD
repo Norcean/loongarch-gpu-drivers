@@ -2,8 +2,8 @@
 # Contributor: zint <zint@tuta.io>
 
 pkgname=loonggpu-dkms
-pkgver=1.0.2.lnd25.1.rc1.7.r63.g99f2fbb
-pkgrel=2
+pkgver=1.0.2.0ky11.1.0.10.r0.g04107cc
+pkgrel=1
 pkgdesc="LOONGGPU binary kernel module with AOSC patch"
 license=()
 arch=(loong64)
@@ -16,7 +16,7 @@ depends=(
 	)
 options=(!debug !strip)
 source=(
-	"$pkgname::git+https://github.com/AOSC-Tracking/loonggpu-kernel-dkms.git#branch=aosc/v1.0.2-lnd25.1-rc1.7"
+	"$pkgname::git+https://github.com/AOSC-Tracking/loonggpu-kernel-dkms.git#branch=master"
 )
 b2sums=('SKIP')
 
