@@ -1,3 +1,3 @@
-# instruction
+# Instruction
 
-install loongarch gpu drivers for new world on archlinux.
+Install loongarch gpu drivers for new world on archlinux.
