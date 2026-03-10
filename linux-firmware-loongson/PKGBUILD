@@ -3,7 +3,7 @@
 
 pkgname=linux-firmware-loongson
 pkgver=1.0.2
-_pkgver=${pkgver}-0kylin1
+_pkgver=${pkgver}-lnd25.1~rc1.7
 pkgrel=2
 pkgdesc="This package contains the binary firmware for loongson graphics chips supported by the gsgpu drivers."
 license=()
@@ -12,8 +12,8 @@ makedepends=(
 	zstd
 	)
 options=(!debug !strip)
-source=("https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/firmware-loongson-graphics_${_pkgver}_loongarch64.deb")
-b2sums=("d0f3e69815f258409ef957bf3493dd7b20f3f7cafd5a59b11a38ae7aa2ea133c039eff01ebba916e633af8d4e9b825332a3e64ee60ba5dd62fcf44db97bb5efd")
+source=("https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/firmware-loongson-graphics_${_pkgver}_${arch}.deb")
+b2sums=("c10ca294c99218b9763f7961f41034e03c092dc57caefe159599b8808e718aae5b2e00680e890bf806a8cb459077edfd0d8ea42c328ef0b6b850dcbdcf978f26")
 
 prepare(){
 	bsdtar -xf "${srcdir}/data."*

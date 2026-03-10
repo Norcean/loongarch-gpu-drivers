@@ -3,7 +3,7 @@
 
 pkgname=xf86-video-loonggpu
 pkgver=1.0.2
-_pkgver=${pkgver}-0kylin1
+_pkgver=${pkgver}-lnd25.1~rc1.7
 pkgrel=2
 pkgdesc="LOONGGPU binary Xorg driver
  loonggpu is an Xorg video driver for the kernel driver which name is the
@@ -25,7 +25,7 @@ depends=(
 	)
 options=(!debug !strip)
 source=(
-	"https://repos.loongson.cn/loonggpu/repos/kylinv10sp1/xserver-xorg-video-loonggpu_${_pkgver}_loongarch64.deb"
+	"https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/xserver-xorg-video-loonggpu_${_pkgver}_${arch}.deb"
 )
 b2sums=('ce459b8834752ab6cb4783da58b36df68198d6ebfa9ef60caf850321f63901e62cd235b7f3f78925ea1b6f90099561b4ae872e7bb01b55adabb66dd906eff157')
 
@@ -56,4 +56,3 @@ EndSection\n' > \
 
 	cp -r "${srcdir}/usr/share" "${pkgdir}/usr/"
 }
-b2sums=('86983d4183c4b79f9c8c04d57c8e065568f13fc7d0440525f163c0a8b9c123e47b805f5b0c24a1696bd67ca95a96714f0fc4942c04ddb340b8a02bab22fb50dc')
