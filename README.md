@@ -13,8 +13,7 @@ LoongArch (loong64) GPU 驱动 Arch Linux 打包仓库。
 | `libloong-gpucomp` | 用户态库 | GPUCOMP 运行时库 |
 | `loonggl` | 用户态库 | 二进制 OpenGL / OpenGL ES / EGL / GLX 实现 |
 | `loonggpu-dkms` | 内核模块(DKMS) | loonggpu + loonggpu-bridge 内核模块 |
-| `xf86-video-loonggpu` | Xorg 驱动 | Xorg video driver + DRI 驱动 |
-| `loonggpu-settings` | 配置 | `/etc/loonggpu/loonggpu_driver.conf` |
+| `xf86-video-loonggpu` | Xorg 驱动 | Xorg video driver + DRI 驱动 + 3D 配置 |
 | `loonggpu-driver` | 元包 | 一键安装上述全部包 |
 
 ## 安装
@@ -30,7 +29,6 @@ cd libloong-gpucomp     && makepkg -si && cd ..
 cd loonggl              && makepkg -si && cd ..
 cd loonggpu-dkms        && makepkg -si && cd ..
 cd xf86-video-loonggpu  && makepkg -si && cd ..
-cd loonggpu-settings    && makepkg -si && cd ..
 ```
 
 ## 注意事项

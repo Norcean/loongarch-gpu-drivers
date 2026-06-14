@@ -49,4 +49,13 @@ package(){
 
 	# Shared data (man pages, Xorg config snippets, etc.)
 	cp -r "${srcdir}/usr/share" "${pkgdir}/usr/"
+
+	# Driver configuration (3D settings)
+	install -dm755 "${pkgdir}/etc/loonggpu"
+	cat > "${pkgdir}/etc/loonggpu/loonggpu_driver.conf" <<-EOF
+		Section "3D"
+		Option  "highPerformanceState"  "false"
+		EndSection
+	EOF
+	chmod 644 "${pkgdir}/etc/loonggpu/loonggpu_driver.conf"
 }

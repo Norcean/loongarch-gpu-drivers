@@ -17,7 +17,6 @@ depends=(
 	libloong-gpucomp
 	loonggl
 	loonggpu-dkms
-	loonggpu-settings
 	xf86-video-loonggpu
 )
 options=(!debug !strip)
