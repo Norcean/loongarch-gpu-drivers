@@ -38,7 +38,8 @@ cd loonggpu-settings    && makepkg -si && cd ..
 - 所有闭源二进制包来自 [Loongnix 25 仓库](https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/)
 - `loonggpu-dkms` 使用 [AOSC-Tracking/loonggpu-kernel-dkms](https://github.com/AOSC-Tracking/loonggpu-kernel-dkms) 源码，包含针对上游内核 v6.18+ 的适配补丁
 - `xf86-video-loonggpu` 中创建了 `libedit.so.2` 兼容 symlink（Arch 的 `libedit` 提供 `libedit.so`）
-- 许可证：`custom:LOONGGPU`（专有闭源驱动）
+- 本仓库的 PKGBUILD 和配置文件采用 **GPL-3.0-or-later** 许可证（参见 LICENSE 文件）
+- 打包的二进制驱动本身为 Loongson 专有软件，适用 `custom:LOONGGPU` 许可证
 
 ## 硬件
 
