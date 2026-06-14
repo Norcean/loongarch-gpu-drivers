@@ -12,7 +12,7 @@ pkgdesc="LOONGGPU binary Xorg driver
  not enabled, then this driver will fallback to shadowfb. This driver
  supports TrueColor visuals at framebuffer depths of 15, 16, 24, and 30.
  This package is build from the X.org xf86-video-loonggpu driver module."
-license=()
+license=('custom:LOONGGPU')
 arch=(loong64)
 makedepends=(
 	binutils
@@ -33,26 +33,20 @@ prepare(){
 	bsdtar -xf "${srcdir}/data."*
 }
 package(){
-	mkdir -p "${pkgdir}/usr"
-	mkdir -p "${pkgdir}/etc/loonggpu"
-
-
-
-	install -d -Dm755 "${pkgdir}/etc/loonggpu"
-	printf 'Section "3D"
-Option  "highPerformanceState"  "false"
-EndSection\n' > \
-		"${pkgdir}/etc/loonggpu/loonggpu_driver.conf"
-
+	# Xorg driver
 	install -Dm755 "${srcdir}/usr/lib/xorg/modules/drivers/loonggpu_drv.so" "${pkgdir}/usr/lib/xorg/modules/drivers/loonggpu_drv.so"
 
+	# loonggpu_drv.so was built against libedit.so.2 on Loongnix;
+	# Arch's libedit ships libedit.so so this symlink resolves correctly.
 	pushd "${pkgdir}/usr/lib"
 	ln -s libedit.so libedit.so.2
 	popd
 
+	# DRI driver (gsgpu_dri.so comes from loonggl)
 	pushd "${pkgdir}/usr/lib/xorg/modules"
 	ln -s ../../dri/gsgpu_dri.so
 	popd
 
+	# Shared data (man pages, Xorg config snippets, etc.)
 	cp -r "${srcdir}/usr/share" "${pkgdir}/usr/"
 }

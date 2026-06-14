@@ -6,7 +6,7 @@ pkgver=1.0.2
 _pkgver=${pkgver}-lnd25.1~rc1.7
 pkgrel=1
 pkgdesc="LOONGGPU GPUCOMP runtime library"
-license=()
+license=('custom:LOONGGPU')
 arch=(loong64)
 makedepends=(
 	binutils
@@ -26,5 +26,5 @@ prepare(){
 package(){
 	install -Dm755 "${srcdir}/usr/lib/loongarch64-linux-gnu/libloong-gpucomp.so.1" "${pkgdir}/usr/lib/libloong-gpucomp.so.1"
 
-	install -Dm644 ${srcdir}/usr/share/doc/libloong-gpucomp/copyright ${pkgdir}/usr/share/doc/libloong-gpucomp/copyright
+	install -Dm644 "${srcdir}/usr/share/doc/libloong-gpucomp/copyright" "${pkgdir}/usr/share/doc/libloong-gpucomp/copyright"
 }

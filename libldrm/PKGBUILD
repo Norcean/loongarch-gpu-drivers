@@ -6,7 +6,7 @@ pkgver=1.0.2
 _pkgver=${pkgver}-lnd25.1~rc1.7
 pkgrel=1
 pkgdesc="LOONGGPU ldrm library"
-license=()
+license=('custom:LOONGGPU')
 arch=(loong64)
 makedepends=(
 	binutils
@@ -30,7 +30,7 @@ package(){
 	ln -s libldrm.so.1.0.0 libldrm.so.1
 	popd
 
-	install -Dm644 ${srcdir}/usr/share/libldrm/loonggpu.ids ${pkgdir}/usr/share/libldrm/loonggpu.ids
+	install -Dm644 "${srcdir}/usr/share/libldrm/loonggpu.ids" "${pkgdir}/usr/share/libldrm/loonggpu.ids"
 
-	install -Dm644 ${srcdir}/usr/share/doc/libldrm/copyright ${pkgdir}/usr/share/doc/libldrm/copyright
+	install -Dm644 "${srcdir}/usr/share/doc/libldrm/copyright" "${pkgdir}/usr/share/doc/libldrm/copyright"
 }

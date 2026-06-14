@@ -5,11 +5,11 @@ pkgname=linux-firmware-loongson
 pkgver=1.0.2
 _pkgver=${pkgver}-lnd25.1~rc1.7
 pkgrel=2
-pkgdesc="This package contains the binary firmware for loongson graphics chips supported by the gsgpu drivers."
-license=()
+pkgdesc="This package contains the binary firmware (lg100/lg200) for loongson graphics chips supported by the loonggpu drivers."
+license=('custom:LOONGGPU')
 arch=(loong64)
 makedepends=(
-	zstd
+	libarchive
 	)
 options=(!debug !strip)
 source=("https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/firmware-loongson-graphics_${_pkgver}_${arch}.deb")
@@ -19,7 +19,8 @@ prepare(){
 	bsdtar -xf "${srcdir}/data."*
 }
 package(){
-	install -Dm644 ${srcdir}/lib/firmware/loonggpu/lg100_cp.bin ${pkgdir}/usr/lib/firmware/loonggpu/lg100_cp.bin
+	install -Dm644 "${srcdir}/lib/firmware/loonggpu/lg100_cp.bin"  "${pkgdir}/usr/lib/firmware/loonggpu/lg100_cp.bin"
+	install -Dm644 "${srcdir}/lib/firmware/loonggpu/lg200_cp.bin"  "${pkgdir}/usr/lib/firmware/loonggpu/lg200_cp.bin"
 
-	install -Dm644 ${srcdir}/usr/share/doc/firmware-loongson-graphics/copyright ${pkgdir}/usr/share/doc/firmware-loongson-graphics/copyright
+	install -Dm644 "${srcdir}/usr/share/doc/firmware-loongson-graphics/copyright" "${pkgdir}/usr/share/doc/firmware-loongson-graphics/copyright"
 }

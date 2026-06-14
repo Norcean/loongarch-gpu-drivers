@@ -1,0 +1,42 @@
+# Maintainer: zint <zint@tuta.io>
+# Contributor: zint <zint@tuta.io>
+
+pkgname=loonggpu-driver
+pkgver=1.0.2
+_pkgver=${pkgver}-lnd25.1~rc1.7
+pkgrel=1
+pkgdesc="LOONGGPU metapackage — installs the complete loonggpu graphics driver suite"
+license=('custom:LOONGGPU')
+arch=(loong64)
+makedepends=(
+	libarchive
+	)
+depends=(
+	linux-firmware-loongson
+	libldrm
+	libloong-gpucomp
+	loonggl
+	loonggpu-dkms
+	loonggpu-settings
+	xf86-video-loonggpu
+)
+options=(!debug !strip)
+source=(
+	"https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/loonggpu-driver_${_pkgver}_${arch}.deb"
+)
+b2sums=(
+	'876e349e3bcf8b677a554595d8e1854ec9428752049589b5bd3da69df055759cc372902a61eff7b51167d57626e67f932764c1a008be52fa839f790ec8285afd'
+)
+
+prepare(){
+	bsdtar -xf "${srcdir}/data."*
+}
+package(){
+	# Bug-report / diagnostic script
+	install -Dm755 "${srcdir}/usr/share/bug/loonggpu-driver/script" \
+		"${pkgdir}/usr/share/bug/loonggpu-driver/script"
+
+	# Documentation
+	install -Dm644 "${srcdir}/usr/share/doc/loonggpu-driver/copyright" \
+		"${pkgdir}/usr/share/doc/loonggpu-driver/copyright"
+}

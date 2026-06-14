@@ -5,7 +5,7 @@ pkgname=loonggpu-dkms
 pkgver=1.0.2.0ky11.1.0.10.r0.g04107cc
 pkgrel=1
 pkgdesc="LOONGGPU binary kernel module with AOSC patch"
-license=()
+license=('custom:LOONGGPU')
 arch=(loong64)
 makedepends=(
 	git
