@@ -16,7 +16,7 @@ depends=(
 	)
 options=(!debug !strip)
 source=(
-	"$pkgname::git+https://github.com/AOSC-Tracking/loonggpu-kernel-dkms.git#branch=master"
+	"$pkgname::git+https://github.com/AOSC-Tracking/loonggpu-kernel-dkms.git#branch=aosc/1.0.2-ud25.1-rc1.10.1"
 )
 b2sums=('SKIP')
 
