@@ -2,7 +2,7 @@
 # Contributor: zint <zint@tuta.io>
 
 pkgname=loonggpu-dkms
-pkgver=1.0.2.ln25.1.r0.fb0b5df
+pkgver=1.0.2.lnd25.1.0.r0.gfb0b5df
 pkgrel=1
 pkgdesc="LOONGGPU binary kernel module with AOSC patch"
 license=('custom:LOONGGPU')
@@ -22,7 +22,7 @@ b2sums=('SKIP')
 
 pkgver() {
 	cd "${srcdir}/${pkgname}"
-	git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+	git describe --long --tags | sed 's|^aosc/||;s/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build(){

@@ -3,6 +3,7 @@
 LoongArch (loong64) GPU 驱动 Arch Linux 打包仓库。
 
 为龙芯平台提供完整的 GPU 图形驱动支持，面向 **New World**（上游内核 ABI）系统。
+当前打包版本基于 Loongnix **1.0.2-lnd25.1** 发布。
 
 ## 包含的包
 
@@ -33,8 +34,9 @@ cd xf86-video-loonggpu  && makepkg -si && cd ..
 
 ## 注意事项
 
-- 所有闭源二进制包来自 [Loongnix 25 仓库](https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/)
-- `loonggpu-dkms` 使用 [AOSC-Tracking/loonggpu-kernel-dkms](https://github.com/AOSC-Tracking/loonggpu-kernel-dkms) 源码，包含针对上游内核 v6.18+ 的适配补丁
+- 所有闭源二进制包来自 [Loongson 官方软件源](https://repos.loongson.cn/loonggpu/repos/loongnix25/)（`loonggpu/repos/loongnix25`，版本 `1.0.2-lnd25.1`）
+- `loonggpu-dkms` 使用 [AOSC-Tracking/loonggpu-kernel-dkms](https://github.com/AOSC-Tracking/loonggpu-kernel-dkms) 的 `aosc/v1.0.2-lnd25.1` 分支源码，包含针对上游内核 v6.18+ 的适配补丁
+- 上游另有 `loonggpu-keyring`、`loonggpu-settings` 两个 Debian 专属包未打包：keyring 仅用于 apt 源签名；settings 的 3D 配置功能已由 `xf86-video-loonggpu` 覆盖
 - `xf86-video-loonggpu` 中创建了 `libedit.so.2` 兼容 symlink（Arch 的 `libedit` 提供 `libedit.so`）
 - 本仓库的 PKGBUILD 和配置文件采用 **GPL-3.0-or-later** 许可证（参见 LICENSE 文件）
 - 打包的二进制驱动本身为 Loongson 专有软件，适用 `custom:LOONGGPU` 许可证

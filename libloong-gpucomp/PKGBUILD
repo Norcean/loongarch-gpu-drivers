@@ -3,7 +3,7 @@
 
 pkgname=libloong-gpucomp
 pkgver=1.0.2
-_pkgver=${pkgver}-lnd25.1~rc1.7
+_pkgver=${pkgver}-lnd25.1
 pkgrel=1
 pkgdesc="LOONGGPU GPUCOMP runtime library"
 license=('custom:LOONGGPU')
@@ -14,10 +14,10 @@ makedepends=(
 	)
 options=(!debug !strip)
 source=(
-	"https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/libloong-gpucomp_${_pkgver}_${arch}.deb"
+	"https://repos.loongson.cn/loonggpu/repos/loongnix25/libloong-gpucomp_${_pkgver}_${arch}.deb"
 )
 b2sums=(
-	"564bb0e8c9f65bb856595dadc9bb35aa55485bef371b20fde2bfb3772cf7ceebab2b7734df6090080f1f5f6fa4d63e89e57db188500ccb4ebb2b05b8f23766cd"
+	"f63cdd90b9729d22de2e016d8d580491060394db59258b595597e90f25f911597ece33ce827360e764822e642da6cf98bdf85a3688d604bd01cc68781cc11970"
 )
 
 prepare(){

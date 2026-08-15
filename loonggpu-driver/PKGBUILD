@@ -3,7 +3,7 @@
 
 pkgname=loonggpu-driver
 pkgver=1.0.2
-_pkgver=${pkgver}-lnd25.1~rc1.7
+_pkgver=${pkgver}-lnd25.1
 pkgrel=1
 pkgdesc="LOONGGPU metapackage — installs the complete loonggpu graphics driver suite"
 license=('custom:LOONGGPU')
@@ -21,10 +21,10 @@ depends=(
 )
 options=(!debug !strip)
 source=(
-	"https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/loonggpu-driver_${_pkgver}_${arch}.deb"
+	"https://repos.loongson.cn/loonggpu/repos/loongnix25/loonggpu-driver_${_pkgver}_${arch}.deb"
 )
 b2sums=(
-	'876e349e3bcf8b677a554595d8e1854ec9428752049589b5bd3da69df055759cc372902a61eff7b51167d57626e67f932764c1a008be52fa839f790ec8285afd'
+	'af64b41ac29f7ae31fed94739162c00684d4db657e455b08b9466ad37606b79d19d0c1ec53530363fce86d4b79c47508b3970234f5f0df37f5e09eb55f47228f'
 )
 
 prepare(){

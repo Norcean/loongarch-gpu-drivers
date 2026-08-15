@@ -3,8 +3,8 @@
 
 pkgname=xf86-video-loonggpu
 pkgver=1.0.2
-_pkgver=${pkgver}-lnd25.1~rc1.7
-pkgrel=2
+_pkgver=${pkgver}-lnd25.1
+pkgrel=1
 pkgdesc="LOONGGPU binary Xorg driver
  loonggpu is an Xorg video driver for the kernel driver which name is the
  value of \"MatchDriver\" in 20-loonggpu.conf. Note that 3D acceleration is
@@ -25,9 +25,9 @@ depends=(
 	)
 options=(!debug !strip)
 source=(
-	"https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/xserver-xorg-video-loonggpu_${_pkgver}_${arch}.deb"
+	"https://repos.loongson.cn/loonggpu/repos/loongnix25/xserver-xorg-video-loonggpu_${_pkgver}_${arch}.deb"
 )
-b2sums=('ce459b8834752ab6cb4783da58b36df68198d6ebfa9ef60caf850321f63901e62cd235b7f3f78925ea1b6f90099561b4ae872e7bb01b55adabb66dd906eff157')
+b2sums=('e794cba347de3ad79ff138e7c513c3b5209d8eaa7967ccf31c0b44ee3fdbcf2167dccc624f28b44e450a63588fee233779f61bd5efce3a87bf78d8477dd204a7')
 
 prepare(){
 	bsdtar -xf "${srcdir}/data."*

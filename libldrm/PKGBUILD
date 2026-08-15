@@ -3,7 +3,7 @@
 
 pkgname=libldrm
 pkgver=1.0.2
-_pkgver=${pkgver}-lnd25.1~rc1.7
+_pkgver=${pkgver}-lnd25.1
 pkgrel=1
 pkgdesc="LOONGGPU ldrm library"
 license=('custom:LOONGGPU')
@@ -14,10 +14,10 @@ makedepends=(
 	)
 options=(!debug !strip)
 source=(
-	"https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/libldrm_${_pkgver}_${arch}.deb"
+	"https://repos.loongson.cn/loonggpu/repos/loongnix25/libldrm_${_pkgver}_${arch}.deb"
 )
 b2sums=(
-	"598275110c298a5744cd184b10e84d37b30692c8372a2696c33e24f4cac16ccfda84b6bc99944a867b6d91599559874916208bb501d57a530a8461c36a89f1a3"
+	"16c3c6812c1cecd27a8679ae810cfcd207aba7765041b58d0bb9a8a7f048a8c64beca421e3e33c923174f1bda845a0d2935e6eeefbd82153669b58d6faf0f834"
 )
 
 prepare(){

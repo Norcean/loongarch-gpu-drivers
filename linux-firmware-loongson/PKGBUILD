@@ -3,8 +3,8 @@
 
 pkgname=linux-firmware-loongson
 pkgver=1.0.2
-_pkgver=${pkgver}-lnd25.1~rc1.7
-pkgrel=2
+_pkgver=${pkgver}-lnd25.1
+pkgrel=1
 pkgdesc="This package contains the binary firmware (lg100/lg200) for loongson graphics chips supported by the loonggpu drivers."
 license=('custom:LOONGGPU')
 arch=(loong64)
@@ -12,8 +12,8 @@ makedepends=(
 	libarchive
 	)
 options=(!debug !strip)
-source=("https://pkg.loongnix.cn/loongnix/25/pool/non-free/l/loonggpu-graphics-drivers/firmware-loongson-graphics_${_pkgver}_${arch}.deb")
-b2sums=("c10ca294c99218b9763f7961f41034e03c092dc57caefe159599b8808e718aae5b2e00680e890bf806a8cb459077edfd0d8ea42c328ef0b6b850dcbdcf978f26")
+source=("https://repos.loongson.cn/loonggpu/repos/loongnix25/firmware-loongson-graphics_${_pkgver}_${arch}.deb")
+b2sums=("7a21c1ea17a211d0f95cd3dea6272c6305edded1fb576a75bb108de115eb379abb941ff36278b399262f0a6f4499de41f0439ca19e00394bd20f42b740395394")
 
 prepare(){
 	bsdtar -xf "${srcdir}/data."*
