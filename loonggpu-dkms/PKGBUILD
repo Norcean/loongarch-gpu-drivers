@@ -46,8 +46,4 @@ package(){
 		"${pkgdir}/etc/udev/rules.d/70-loonggpu.rules"
 	chmod 644 "${pkgdir}/etc/udev/rules.d/70-loonggpu.rules"
 
-	# https://www.kdocs.cn/l/cvq9DSawFxLS
-	install -Dm644 /dev/null "${pkgdir}/usr/lib/modprobe.d/loongson.conf"
-	printf 'softdep loongson pre: loonggpu\n' > "${pkgdir}/usr/lib/modprobe.d/loongson.conf"
-
 }
