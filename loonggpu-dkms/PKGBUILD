@@ -3,7 +3,7 @@
 
 pkgname=loonggpu-dkms
 pkgver=1.0.2.lnd25.1.0.r0.gfb0b5df
-pkgrel=1
+pkgrel=2
 pkgdesc="LOONGGPU binary kernel module with AOSC patch"
 license=('custom:LOONGGPU')
 arch=(loong64)
